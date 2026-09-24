@@ -1,4 +1,4 @@
-# MiniProject-Gropu10
+# MiniProject-Group10
 
 ## Objectives
 The main objectives of this project are:
