@@ -1,11 +1,8 @@
 const express = require("express");
 const fs = require("fs");
-const path = require("path");
 
 const app = express();
 const PORT = 3000;
-
-const filePath = path.join(__dirname, "registrations.json");
 
 app.use(express.json());
 
@@ -19,7 +16,7 @@ app.post("/registrations", (req, res) => {
         });
     }
 
-    fs.readFile(filePath, "utf8", (err, data) => {
+    fs.readFile("registrations.json", "utf8", (err, data) => {
         if (err) {
             return res.status(500).json({
                 success: false,
@@ -66,7 +63,7 @@ app.post("/registrations", (req, res) => {
         registrations.push(newRegistration);
 
         fs.writeFile(
-            filePath,
+            "registrations.json",
             JSON.stringify(registrations, null, 2),
             "utf8",
             writeErr => {
@@ -88,7 +85,7 @@ app.post("/registrations", (req, res) => {
 });
 
 app.get("/registrations", (req, res) => {
-    fs.readFile(filePath, "utf8", (err, data) => {
+    fs.readFile("registrations.json", "utf8", (err, data) => {
         if (err) {
             return res.status(500).json({
                 success: false,
